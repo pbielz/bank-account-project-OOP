@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoPedroLopes.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ProjetoPedroLopes.Entities
     internal class PremiumAccount : Account
     {
         //percentual de cashback
-        public double CashbackPercentage { get; set; }
+        public double CashbackPercentage { get; private set; }
 
         //Construtores
         public PremiumAccount() { }
@@ -24,12 +25,9 @@ namespace ProjetoPedroLopes.Entities
         {
             if (amount > Balance)
             {
-                Console.WriteLine("Saque recusado: saldo insuficiente.");
+                throw new InsufficientFundsException("Saldo insuficiente.");
             }
-            else
-            {
                 Balance -= amount; // no fee
-            }
         }
 
         //método para aplicar cashback

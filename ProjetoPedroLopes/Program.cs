@@ -1,4 +1,5 @@
 ﻿using ProjetoPedroLopes.Entities;
+using ProjetoPedroLopes.Services;
 using System;
 
 
@@ -9,12 +10,27 @@ namespace ProjetoPedroLopes
 
         static void Main(string[] args)
         {
+            BankService bank = new BankService();
 
-            Account acc1 = new CheckingAccount(1001, "Pedro", 5000, 5, 1000);
+            var acc1 = new CheckingAccount(1001, "Pedro", 5000, 5, 1000);
+            var acc2 = new PremiumAccount(2, "Bob", 5000, 1000);
+            var acc3 = new PremiumAccount(3, "Alice", 3000, 0.02);
 
+            //bank.AddAccount(acc1);
+            bank.AddAccount(acc2);
 
+            acc1.Deposit(300);
+            acc1.Withdraw(200);
+            acc1.Transfer(acc2, 100);
+
+            bank.PrintStatement(acc1);
+            bank.PrintStatement(acc2);
+
+            Console.WriteLine(bank);
+
+            Console.ReadKey();
             int n = 0;
-            while (n != 5)
+            while (n != 6)
             {
                 Console.Clear();
                 Console.WriteLine("Bem vindo ao Banco PG!");
@@ -25,8 +41,9 @@ namespace ProjetoPedroLopes
                 Console.WriteLine("3. Sacar.");
                 Console.WriteLine("4. Consultar conta.");
                 Console.WriteLine("5. Listar conta.");
-                Console.WriteLine("5. Sair.");
+                Console.WriteLine("6. Sair.");
                 n = int.Parse(Console.ReadLine());
+                Console.Clear();
 
                 switch (n)
                 {
@@ -47,16 +64,13 @@ namespace ProjetoPedroLopes
                         Console.WriteLine();
                         break;
                     case 5:
+                        break;
+                    case 6:
                         Console.WriteLine("Volte sempre!");
                         break;
                 }
                 Console.WriteLine();
-                Console.Write("Deseja usar os serviços do banco novamente? (s/n): ");
-                string reiniciar = Console.ReadLine();
-                if (reiniciar == "n")
-                {
-                     break;
-                }
+                Console.Write("Pressione qualquer tecla para reiniciar ");
                 Console.ReadKey();
             }
 
@@ -81,9 +95,9 @@ namespace ProjetoPedroLopes
 
             // Account acc2 = new CheckingAccount(1002, "Gabriel", 500, 0.01);
             List<Account> lista = new List<Account>();
-            lista.Add(new SavingAccount(1003, "João", 1000, 0.01));
+            // lista.Add(new SavingAccount(1003, "João", 1000, 0.01));
 
-            Console.WriteLine(lista[0]);
+            // Console.WriteLine(lista[0]);
 
             //   acc2.Withdraw(10);
 

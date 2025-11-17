@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoPedroLopes.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ProjetoPedroLopes.Entities
     internal class StudentAccount : Account
     {
         //limite diário de saque
-        public double DailyWithdrawLimit { get; set; }
+        public double DailyWithdrawLimit { get; private set; }
 
         //Construtores
         public StudentAccount() { }
@@ -24,16 +25,13 @@ namespace ProjetoPedroLopes.Entities
         {
             if (amount > DailyWithdrawLimit)
             {
-                Console.WriteLine("Saldo recusado, o valor solicitado excede o limite diário.");
+                throw new InvalidAmountException("Saque recusado: pedido de saque maior que o limite diário.");
             }
-            else if (amount > Balance)
+            if (amount > Balance)
             {
-                Console.WriteLine("Saldo recusado, saldo insuficiente.");
+                throw new InsufficientFundsException("Saque recusado: saldo insuficiente.");
             }
-            else
-            {
-                Balance -= amount;
-            }
+            Balance -= amount;
         }
     }
 }

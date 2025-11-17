@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjetoPedroLopes.Exceptions;
 
 namespace ProjetoPedroLopes.Entities
 {
@@ -10,9 +11,9 @@ namespace ProjetoPedroLopes.Entities
     {
 
         //taxa de saque
-        public double WithdrawFee { get; set; }
+        public double WithdrawFee { get; private set; }
         //limite de cheque especial
-        public double OverdraftLimit { get; set; }
+        public double OverdraftLimit { get; private set; }
 
         public CheckingAccount() { }
         public CheckingAccount(int number, string holder, double balance, double withdrawFee, double overdraftLimit) : base(number, holder, balance)
@@ -26,14 +27,13 @@ namespace ProjetoPedroLopes.Entities
         {
             double total = amount + WithdrawFee;
 
-            if (Balance + OverdraftLimit >= total)
+            if (Balance + OverdraftLimit <= total)
             {
-                Balance -= total;
+                throw new InsufficientFundsException("Saque recusado: saldo insuficiente, incluindo limite de cheque especial.");
             }
-            else
-            {
-                Console.WriteLine("Saque recusado, saldo insufieciente.");
-            }
+
+            Balance -= total;
+
 
         }
     }
