@@ -1,5 +1,4 @@
 ﻿using ProjetoPedroLopes.Exceptions;
-using ProjetoPedroLopes.Interface;
 using ProjetoPedroLopes.Services;
 using System;
 using System.Collections.Generic;

@@ -8,7 +8,6 @@ namespace ProjetoPedroLopes
 {
     internal class Program
     {
-
         static void Main(string[] args)
         {
             BankService bank = new BankService();
@@ -16,11 +15,6 @@ namespace ProjetoPedroLopes
             bank.PreAccount();
             Console.Write("Bem vindo ao Banco PG! ");
             Console.ReadKey();
-
-
-            var interestCalculator = new SimpleInterestCalculator(0.02);
-            var loanService = new LoanService(interestCalculator);
-            loanService.ProcessLoan(, 1000, 12);
 
             //Menu
             int n = 0;
@@ -51,11 +45,6 @@ namespace ProjetoPedroLopes
                         Console.WriteLine("Digite o número da conta que deseja depositar");
                         int depositAccount = int.Parse(Console.ReadLine());
                         bank.Validation(depositAccount);
-                        //if (bank.GetAccount(depositAccount) == null)
-                        //{
-                        //    Console.WriteLine("Não há contas cadastradas para realizar a transferência.");
-                        //    break;
-                        //}
                         Console.WriteLine("Quanto deseja depositar?");
                         double depositAmount = double.Parse(Console.ReadLine());
                         bank.Deposit(depositAccount, depositAmount);
