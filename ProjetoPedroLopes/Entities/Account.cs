@@ -50,5 +50,10 @@ namespace ProjetoPedroLopes.Entities
             this.Withdraw(amount);
             target.Deposit(amount);
         }
+
+        override public string ToString()
+        {
+            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}";
+        }
     }
 }
