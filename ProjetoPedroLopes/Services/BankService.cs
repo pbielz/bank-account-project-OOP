@@ -13,6 +13,9 @@ namespace ProjetoPedroLopes.Services
     {
         private readonly List<Account> accounts = new List<Account>();
 
+
+        
+
         //1- Criar Conta
         public static void CreateAccount(BankService bank)
         {
@@ -26,13 +29,13 @@ namespace ProjetoPedroLopes.Services
                     Console.Write("Número de conta já existente. Digite outro número: ");
                 }
                 else
-                    break;             
+                    break;
             }
             Console.Write("Digite o nome do proprietário da conta: ");
             string holder = Console.ReadLine();
             Console.Write("Digite o saldo inicial: ");
             double balance = double.Parse(Console.ReadLine());
-            if (balance <= 0 )
+            if (balance <= 0)
             {
                 throw new InsufficientFundsException("Dinheiro insuficiente");
             }
@@ -77,21 +80,38 @@ namespace ProjetoPedroLopes.Services
         }
 
         //2- Depositar
-        public static void Deposit(BankService bank)
+        public void Deposit(int number, double amount)
         {
-            Console.WriteLine("Selecione a conta que você deseja depositar");
+          
+            var depositAccount = GetAccount(number);
+            depositAccount.Deposit(amount);
+        }
 
+        //3- Sacar
+        public void Withdraw(int number, double amount)
+        {
+            var withdrawAccount = GetAccount(number);
+            withdrawAccount.Withdraw(amount);
+        }
+
+        //4- Transferir
+        public void Transfer(int fromNumber, int toNumber, double amount)
+        {
+            
+            var fromAccount = GetAccount(fromNumber);
+            var toAccount = GetAccount(toNumber);
+            fromAccount.Transfer(toAccount, amount);
         }
 
 
-        //4- Buscar Conta
+        //5- Buscar Conta
         public Account GetAccount(int number)
         {
             return accounts.FirstOrDefault(a => a.Number == number);
         }
 
 
-        //5- Listar todas as contas
+        //6- Listar todas as contas
         public void GetAllAccounts()
         {
             foreach (var account in accounts)
@@ -100,10 +120,26 @@ namespace ProjetoPedroLopes.Services
             }
         }
 
+        //7- Remover Conta
+        public void RemoveAccount(Account account)
+        {
+            accounts.Remove(account);
+        }
 
+        public void Validation(int number)
+        {
+       
+            if (GetAccount(number) == null)
+            {
+                Console.WriteLine("Conta não encontrada");
+                Console.ReadKey();
+                System.Environment.Exit(0);
+            }
+        }
         // Pré-cadastro de contas
         public void PreAccount()
         {
+            var acc0 = new CheckingAccount(0, "AAA", 0, 0, 0);
             var acc1 = new CheckingAccount(1, "João", 5000, 5, 1000);
             var acc2 = new PremiumAccount(2, "Bob", 5000, 0.2);
             var acc3 = new BusinessAccount(3, "Carlos", 15000, 5000);
@@ -112,6 +148,7 @@ namespace ProjetoPedroLopes.Services
             var acc6 = new CheckingAccount(6, "Cleiton", 1000, 7, 3000);
             var acc7 = new PremiumAccount(7, "Pedro", 7777777777, 0.77);
 
+            AddAccount(acc0);
             AddAccount(acc1);
             AddAccount(acc2);
             AddAccount(acc3);
@@ -121,27 +158,9 @@ namespace ProjetoPedroLopes.Services
             AddAccount(acc7);
         }
 
-        public void RemoveAccount(Account account)
-        {
-            accounts.Remove(account);
-        }
-
         public void AddAccount(Account account)
         {
             accounts.Add(account);
         }
-
-        public void PrintStatement(Account account)
-        {
-            Console.WriteLine("------------------------------");
-            Console.WriteLine($"Número da conta: {account.Number}");
-            Console.WriteLine($"Proprietário(a) da conta:   {account.Holder}");
-            Console.WriteLine($"Saldo: {account.Balance:C}");
-            Console.WriteLine("------------------------------");
-        }
-
-
-
-
     }
 }
