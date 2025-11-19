@@ -156,6 +156,23 @@ namespace ProjetoPedroLopes.Services
             AddAccount(acc5);
             AddAccount(acc6);
             AddAccount(acc7);
+
+            // CHAMADAS REPETIDAS PODERIA LIMPAR COM UM LOOP
+
+            //var accounts = new List<Account>
+            //{
+            //    new CheckingAccount(0, "AAA", 0, 0, 0),
+            //    new CheckingAccount(1, "João", 5000, 5, 1000),
+            //    new PremiumAccount(2, "Bob", 5000, 0.2),
+            //    new BusinessAccount(3, "Carlos", 15000, 5000),
+            //    new StudentAccount(4, "Laura", 450, 100),
+            //    new CheckingAccount(5, "Alice", 3000, 10, 1000),
+            //    new CheckingAccount(6, "Cleiton", 1000, 7, 3000),
+            //    new PremiumAccount(7, "Pedro", 7777777777, 0.77)
+            //};
+
+            //foreach (var acc in accounts)
+            //    AddAccount(acc);
         }
 
         public void AddAccount(Account account)

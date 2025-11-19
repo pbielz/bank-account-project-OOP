@@ -18,7 +18,7 @@ namespace ProjetoPedroLopes
 
             //Menu
             int n = 0;
-            while (n != 7)
+            while (n != 7) // DIFERENTE DE 7 OU 8? 
             {
                 Console.Clear();
                 Console.WriteLine();
@@ -38,7 +38,7 @@ namespace ProjetoPedroLopes
                 {
                     case 1:
                         //criar conta
-                        BankService.CreateAccount(bank);
+                        BankService.CreateAccount(bank); // METODO ESTATICO QUANDO PODERIA CHAMAR DIRETO PELO OBJETO
                         break;
                     case 2:
                         //Depositar
@@ -129,3 +129,30 @@ namespace ProjetoPedroLopes
 
     }
 }
+
+// BOM USO DE POO, EXEMPLOS DE CLASSE ABSTRATA, SOBRESCRITA DE MÉTODOS, PROPRIEDADES COM PRIVATE SET CONSOLIDANDO O ENCAPSULAMENTO.
+// PODERIA NÃO CHAMAR O CONSOLE.WRITELINE DENTRO DAS ENTIDADES PARA REFORÇAR A SEPARAÇÃO DE RESPONSABILIDADES E DEIXAR A ENTIDADE APENAS COM REGRA DE NEGOCIO.
+// USO DESNECESSARIO DO MÉTODO ESTATICO BANCSERVICE.CREATEACCOUNT, PODERIA SER CHAMADO DIRETO PELO OBJETO PORQUE VOCE JA TINHA ELE INSTANCIADO NO MOMENTO EM QUE PRECISAVA.
+// ATENTAR-SE AOS USINGS DESNECESSÁRIOS EM CADA ARQUIVO PARA EVITAR POLUIÇÃO DO CÓDIGO.
+// EXEMPLOS DE EXCEÇÕES PERSONALIZADAS, POREM PRECISAMOS ENTENDER A NECESSIDADE DE USÁ-LAS EM CENÁRIOS REAIS.
+
+    /*
+     * Situações esperadas / comuns de negócio
+    
+    Ex.:
+    “Saldo insuficiente para saque”
+    “Usuário não pode mudar e-mail após confirmação”
+    “Não é permitido alterar pedido já faturado”
+    👉 Isso faz parte da regra de negócio e tende a acontecer com certa frequência.
+    Normalmente NÃO é caso de exception, e sim de retorno controlado (Result, Notification, etc).
+    Situações anômalas / técnicas / inesperadas
+    Ex.:
+    Timeout de banco
+    Erro ao acessar um serviço externo
+    Inconsistência grave de dados (“pedido não possui cliente associado!”)
+    Corrupção de estado
+    👉 Isso sim é “exception territory”.
+
+    *
+    */
+

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoPedroLopes.Entities
 {
-    abstract class Account
+    abstract class Account // CLASSE BASE ABSTRATA, BOM
     {
         public int Number { get; private set; }
         public string Holder { get; private set; }
