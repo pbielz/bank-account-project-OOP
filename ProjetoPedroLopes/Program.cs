@@ -18,7 +18,7 @@ namespace ProjetoPedroLopes
 
             //Menu
             int n = 0;
-            while (n != 7)
+            while (n != 8)
             {
                 Console.Clear();
                 Console.WriteLine();
@@ -35,9 +35,10 @@ namespace ProjetoPedroLopes
                 Console.Clear();
 
                 switch (n)
-                {
+                {   
                     case 1:
                         //criar conta
+
                         BankService.CreateAccount(bank);
                         break;
                     case 2:

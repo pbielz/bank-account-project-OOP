@@ -40,7 +40,7 @@ namespace ProjetoPedroLopes.Entities
 
         override public string ToString()
         {
-            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}, tipo da conta: {AccountType.Checking}, taxa de saque: {WithdrawFee}, limite do cheque especial:{OverdraftLimit}";
+            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}, tipo: {AccountType.Checking}, taxa: {WithdrawFee}, cheque especial:{OverdraftLimit}";
         }
     }
 }

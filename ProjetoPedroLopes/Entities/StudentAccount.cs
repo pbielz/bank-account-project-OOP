@@ -37,7 +37,7 @@ namespace ProjetoPedroLopes.Entities
 
         override public string ToString()
         {
-            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}, tipo da conta: {AccountType.Student}, limite diário: {DailyWithdrawLimit}";
+            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}, tipo: {AccountType.Student}, limite diário: {DailyWithdrawLimit}";
         }
     }
 }

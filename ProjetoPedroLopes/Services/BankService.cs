@@ -148,7 +148,8 @@ namespace ProjetoPedroLopes.Services
             var acc4 = new StudentAccount(4, "Laura", 450, 100);
             var acc5 = new CheckingAccount(5, "Alice", 3000, 10, 1000);
             var acc6 = new CheckingAccount(6, "Cleiton", 1000, 7, 3000);
-            var acc7 = new PremiumAccount(7, "Pedro", 7777777777, 0.77);
+            var acc7 = new PremiumAccount(7, "Pedro", 7777777777.77, 0.77);
+            
 
             AddAccount(acc0);
             AddAccount(acc1);
