@@ -1,11 +1,5 @@
 ﻿using ProjetoPedroLopes.Entities;
 using ProjetoPedroLopes.Entities.Enums;
-using ProjetoPedroLopes.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoPedroLopes.Services
 {
@@ -37,7 +31,8 @@ namespace ProjetoPedroLopes.Services
             double balance = double.Parse(Console.ReadLine());
             if (balance <= 0)
             {
-                throw new InsufficientFundsException("Dinheiro insuficiente");
+                Console.WriteLine("Dinheiro insuficiente");
+                System.Environment.Exit(0);
             }
             Console.WriteLine("Escolha o tipo da conta que deseja criar: ");
             Console.WriteLine("1. Conta Corrente");
@@ -142,8 +137,8 @@ namespace ProjetoPedroLopes.Services
         public void PreAccount()
         {
             var acc0 = new CheckingAccount(0, "AAA", 0, 0, 0);
-            var acc1 = new CheckingAccount(1, "João", 5000, 5, 1000);
-            var acc2 = new PremiumAccount(2, "Bob", 5000, 0.2);
+            var acc1 = new CheckingAccount(1, "João", 10, 5, 1000);
+            var acc2 = new PremiumAccount(2, "Bob", 5000, 0.5);
             var acc3 = new BusinessAccount(3, "Carlos", 15000, 5000);
             var acc4 = new StudentAccount(4, "Laura", 450, 100);
             var acc5 = new CheckingAccount(5, "Alice", 3000, 10, 1000);
@@ -159,6 +154,8 @@ namespace ProjetoPedroLopes.Services
             AddAccount(acc5);
             AddAccount(acc6);
             AddAccount(acc7);
+
+
         }
 
         public void AddAccount(Account account)

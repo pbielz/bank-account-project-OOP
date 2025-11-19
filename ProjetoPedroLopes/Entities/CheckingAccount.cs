@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProjetoPedroLopes.Entities.Enums;
-using ProjetoPedroLopes.Exceptions;
+﻿using ProjetoPedroLopes.Entities.Enums;
 
 namespace ProjetoPedroLopes.Entities
 {
@@ -29,11 +23,9 @@ namespace ProjetoPedroLopes.Entities
             double total = amount + WithdrawFee;
 
             if (Balance + OverdraftLimit <= total)
-            {
-                throw new InsufficientFundsException("Saque recusado: saldo insuficiente, incluindo limite de cheque especial.");
-            }
-
-            Balance -= total;
+                Console.WriteLine("Saque recusado: saldo insuficiente, incluindo limite de cheque especial.");
+            else
+                Balance -= total;
 
 
         }

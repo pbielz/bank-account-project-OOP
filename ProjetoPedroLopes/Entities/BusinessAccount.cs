@@ -1,10 +1,5 @@
 ﻿using ProjetoPedroLopes.Entities.Enums;
-using ProjetoPedroLopes.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProjetoPedroLopes.Entities
 {
@@ -41,12 +36,11 @@ namespace ProjetoPedroLopes.Entities
             double total = amount + fee;
 
             if (amount <= 0)
-                throw new InvalidAmountException("Valor do saque deve ser positivo.");
-
-            if (Balance < total)
-                throw new InsufficientFundsException("Saldo insuficiente para realizar o saque com taxa.");
-
-            Balance -= total;
+                Console.WriteLine("Valor do saque deve ser positivo.");
+            else if (Balance < total)
+                Console.WriteLine("Saldo insuficiente para realizar o saque com taxa.");
+            else
+                Balance -= total;
         }
 
         override public string ToString()

@@ -1,7 +1,5 @@
-﻿using ProjetoPedroLopes.Entities;
-using ProjetoPedroLopes.Services;
-using System;
-using System.Security.Principal;
+﻿using ProjetoPedroLopes.Services;
+
 
 
 namespace ProjetoPedroLopes
@@ -13,7 +11,9 @@ namespace ProjetoPedroLopes
             BankService bank = new BankService();
             //contas pré cadastradas
             bank.PreAccount();
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("Bem vindo ao Banco PG! ");
+            Console.ResetColor();
             Console.ReadKey();
 
             //Menu
@@ -30,7 +30,9 @@ namespace ProjetoPedroLopes
                 Console.WriteLine("5. Consultar conta");
                 Console.WriteLine("6. Listar conta. ");
                 Console.WriteLine("7. Remover conta.");
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("8. Sair.");
+                Console.ResetColor();
                 n = int.Parse(Console.ReadLine());
                 Console.Clear();
 
@@ -45,6 +47,11 @@ namespace ProjetoPedroLopes
                         //Depositar
                         Console.WriteLine("Digite o número da conta que deseja depositar");
                         int depositAccount = int.Parse(Console.ReadLine());
+                        if (bank.GetAccount(depositAccount) == null)
+                        {
+                            Console.WriteLine("Conta não encontrada!");
+                            break;
+                        }
                         bank.Validation(depositAccount);
                         Console.WriteLine("Quanto deseja depositar?");
                         double depositAmount = double.Parse(Console.ReadLine());
@@ -54,6 +61,11 @@ namespace ProjetoPedroLopes
                         //Sacar
                         Console.WriteLine("Digite o número da conta que deseja sacar");
                         int withdrawAccount = int.Parse(Console.ReadLine());
+                        if (bank.GetAccount(withdrawAccount) == null)
+                        {
+                            Console.WriteLine("Conta não encontrada!");
+                            break;
+                        }
                         Console.WriteLine("Quanto deseja sacar?");
                         double withdrawAmount = double.Parse(Console.ReadLine());
                         bank.Withdraw(withdrawAccount, withdrawAmount);

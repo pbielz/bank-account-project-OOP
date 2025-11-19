@@ -1,10 +1,4 @@
 ﻿using ProjetoPedroLopes.Entities.Enums;
-using ProjetoPedroLopes.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoPedroLopes.Entities
 {
@@ -26,15 +20,19 @@ namespace ProjetoPedroLopes.Entities
         {
             if (amount > Balance)
             {
-                throw new InsufficientFundsException("Saldo insuficiente.");
+                Console.WriteLine("Saldo insuficiente.");
             }
+            else
+            {
                 Balance -= amount; // sem taxa de saque
+                ApplyCashback(amount);
+            }
         }
 
         //método para aplicar cashback
         public void ApplyCashback(double purchaseAmount)
         {
-            double cashback = purchaseAmount * CashbackPercentage;
+            double cashback = (purchaseAmount * CashbackPercentage);
             Balance += cashback;
         }
 

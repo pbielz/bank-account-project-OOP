@@ -1,12 +1,4 @@
-﻿using ProjetoPedroLopes.Exceptions;
-using ProjetoPedroLopes.Services;
-using ProjetoPedroLopes.Entities.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ProjetoPedroLopes.Entities
 {
     abstract class Account
@@ -31,9 +23,10 @@ namespace ProjetoPedroLopes.Entities
         {
             if (amount <= 0)
             {
-                throw new InsufficientFundsException("Saque recusado: O valor do saque deve ser positivo.");
+                Console.WriteLine("Saque recusado: O valor do saque deve ser positivo.");
             }
-            Balance -= amount + 2;
+            else
+            Balance -= amount;
         }
 
         //Método depósito
@@ -41,7 +34,7 @@ namespace ProjetoPedroLopes.Entities
         {
             if (amount <= 0)
             {
-                throw new InvalidAmountException("Depósito recusado: O valor do depósito deve ser positivo.");
+                Console.WriteLine("Depósito recusado: O valor do depósito deve ser positivo.");
             }
             Balance += amount;
         }

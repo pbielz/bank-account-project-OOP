@@ -1,10 +1,4 @@
 ﻿using ProjetoPedroLopes.Entities.Enums;
-using ProjetoPedroLopes.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoPedroLopes.Entities
 {
@@ -26,13 +20,13 @@ namespace ProjetoPedroLopes.Entities
         {
             if (amount > DailyWithdrawLimit)
             {
-                throw new InvalidAmountException("Saque recusado: pedido de saque maior que o limite diário.");
+                Console.WriteLine("Saque recusado: pedido de saque maior que o limite diário.");
             }
-            if (amount > Balance)
+            else if (amount > Balance)
             {
-                throw new InsufficientFundsException("Saque recusado: saldo insuficiente.");
-            }
-            Balance -= amount;
+                Console.WriteLine("Saque recusado: saldo insuficiente.");
+            }else
+                Balance -= amount;
         }
 
         override public string ToString()
