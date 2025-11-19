@@ -1,5 +1,6 @@
 ﻿using ProjetoPedroLopes.Exceptions;
 using ProjetoPedroLopes.Services;
+using ProjetoPedroLopes.Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

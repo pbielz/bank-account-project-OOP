@@ -1,4 +1,5 @@
-﻿using ProjetoPedroLopes.Exceptions;
+﻿using ProjetoPedroLopes.Entities.Enums;
+using ProjetoPedroLopes.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace ProjetoPedroLopes.Entities
             {
                 throw new InsufficientFundsException("Saldo insuficiente.");
             }
-                Balance -= amount; // no fee
+                Balance -= amount; // sem taxa de saque
         }
 
         //método para aplicar cashback
@@ -35,6 +36,12 @@ namespace ProjetoPedroLopes.Entities
         {
             double cashback = purchaseAmount * CashbackPercentage;
             Balance += cashback;
+        }
+
+       
+        override public string ToString()
+        {
+            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}, tipo da conta: {AccountType.Premium}";
         }
     }
 }

@@ -126,6 +126,7 @@ namespace ProjetoPedroLopes.Services
             accounts.Remove(account);
         }
 
+        // Validação de conta
         public void Validation(int number)
         {
        
@@ -136,6 +137,7 @@ namespace ProjetoPedroLopes.Services
                 System.Environment.Exit(0);
             }
         }
+
         // Pré-cadastro de contas
         public void PreAccount()
         {

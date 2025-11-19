@@ -1,4 +1,5 @@
-﻿using ProjetoPedroLopes.Exceptions;
+﻿using ProjetoPedroLopes.Entities.Enums;
+using ProjetoPedroLopes.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,11 @@ namespace ProjetoPedroLopes.Entities
                 throw new InsufficientFundsException("Saque recusado: saldo insuficiente.");
             }
             Balance -= amount;
+        }
+
+        override public string ToString()
+        {
+            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}, tipo da conta: {AccountType.Student}, limite diário: {DailyWithdrawLimit}";
         }
     }
 }

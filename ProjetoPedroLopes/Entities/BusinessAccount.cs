@@ -1,4 +1,5 @@
-﻿using ProjetoPedroLopes.Exceptions;
+﻿using ProjetoPedroLopes.Entities.Enums;
+using ProjetoPedroLopes.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,11 @@ namespace ProjetoPedroLopes.Entities
                 throw new InsufficientFundsException("Saldo insuficiente para realizar o saque com taxa.");
 
             Balance -= total;
+        }
+
+        override public string ToString()
+        {
+            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}, tipo da conta: {AccountType.Business}, limite de empréstimo: {LoanLimit}";
         }
     }
 }

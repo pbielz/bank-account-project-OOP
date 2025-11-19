@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjetoPedroLopes.Entities.Enums;
 using ProjetoPedroLopes.Exceptions;
 
 namespace ProjetoPedroLopes.Entities
@@ -35,6 +36,11 @@ namespace ProjetoPedroLopes.Entities
             Balance -= total;
 
 
+        }
+
+        override public string ToString()
+        {
+            return $"Conta: {Number}, Proprietário(a): {Holder}, Saldo: ${Balance:F2}, tipo da conta: {AccountType.Checking}, taxa de saque: {WithdrawFee}, limite do cheque especial:{OverdraftLimit}";
         }
     }
 }
